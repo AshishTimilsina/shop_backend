@@ -12,7 +12,7 @@ const fileUpload = require('express-fileupload');
 const path = require('path');
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_KEY, { useNewUrlParser: true, useUnifiedTopology: true }).then((result) => {
-  app.listen(port);
+    app.listen(port);
 });
 
 
@@ -22,14 +22,13 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(fileUpload({
-  limits: { fileSize: 600000 },
-  abortOnLimit: true,
-  createParentPath: true
+    limits: { fileSize: 600000 },
+    abortOnLimit: true,
+    createParentPath: true
 }));
 
-app.use('/uploads/images', express.static(path.join('uploads', 'images',)));
+app.use('/uploads/images', express.static(path.join('uploads', 'images', )));
 
 app.use(userRoutes);
 app.use(productRoutes);
 app.use(orderRoutes);
-
